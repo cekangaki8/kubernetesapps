@@ -25,7 +25,42 @@ mvn clean install
 docker build . -t cekangaki8/simplebatchjob:1.0.0
 docker push cekangaki8/simplebatchjob:1.0.0
 ```
-2. Create kubernetes job and run on openshift cluster
+2. Create kubernetes job and run on openshift cluster  
+
+Using kubernetes job manifest
+```yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: helloworld
+spec:
+  template:
+    metadata:
+      name: helloworld
+    spec:
+      containers:
+        - name: helloworldbatchjob
+          image: cekangaki8/simplebatchjob:1.0.0
+      restartPolicy: Never
+```
+Run the job on the cluster
+```
+Candys-MacBook-Pro:simplebatchjob cekangaki$ kubectl apply -f ./k8s/helloWorldJob.yaml 
+job.batch/helloworld created
+
+//Check the job
+Candys-MacBook-Pro:simplebatchjob cekangaki$ kubectl get jobs
+NAME         COMPLETIONS   DURATION   AGE
+helloworld   1/1           7s         6m42s
+
+```
+
+Notice the restart policy prevents the job from restarting on failure. 
+Also in the above example once the job has successfully been completed, we 
+cannot restart the same job. The job must first be cleaned up from the 
+cluster in order to be restarted.
+
+
 3. Create a helm chart and run on openshift cluster
 
 
