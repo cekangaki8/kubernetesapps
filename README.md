@@ -19,6 +19,15 @@ VERSION: 1.0.0
 3. Run the job on kubernetes
 
 ####FOLLOW ALONG
+1. Build application, create and push to dockerhub
+```
+mvn clean install
+docker build . -t cekangaki8/simplebatchjob:1.0.0
+docker push cekangaki8/simplebatchjob:1.0.0
+```
+2. Create kubernetes job and run on openshift cluster
+3. Create a helm chart and run on openshift cluster
+
 
 ##Useful Links:
 * [Creating a Batch Service](https://spring.io/guides/gs/batch-processing/)

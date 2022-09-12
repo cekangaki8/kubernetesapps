@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: helloworld
+spec:
+  template:
+    metadata:
+      name: helloworld
+    spec:
+      containers:
+        - name: helloworldbatchjob
+          image: cekangaki8/simplebatchjob:1.0.0
+      restartPolicy: Never
+
+  
