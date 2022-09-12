@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.porsetech.learning</groupId>
     <artifactId>simplebatchjob</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <name>simplebatchjob</name>
     <description>simplebatchjob</description>
     <properties>

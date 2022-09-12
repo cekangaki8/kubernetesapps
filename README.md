@@ -60,6 +60,15 @@ Also in the above example once the job has successfully been completed, we
 cannot restart the same job. The job must first be cleaned up from the 
 cluster in order to be restarted.
 
+Add ttlSecondsAfterFinished in the manifest to have the job delete after 60 seconds.
+``` yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: helloworld
+spec:
+  ttlSecondsAfterFinished: 60
+```
 
 3. Create a helm chart and run on openshift cluster
 
@@ -67,4 +76,4 @@ cluster in order to be restarted.
 ##Useful Links:
 * [Creating a Batch Service](https://spring.io/guides/gs/batch-processing/)
 * [Spring Batch reference](https://docs.spring.io/spring-batch/docs/current/reference/html/)
-
+* [Kubernetes Job](https://kubernetes.io/docs/concepts/workloads/controllers/job/)

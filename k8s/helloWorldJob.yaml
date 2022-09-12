@@ -3,13 +3,14 @@ kind: Job
 metadata:
   name: helloworld
 spec:
+  ttlSecondsAfterFinished: 60
   template:
     metadata:
       name: helloworld
     spec:
       containers:
         - name: helloworldbatchjob
-          image: cekangaki8/simplebatchjob:1.0.0
+          image: cekangaki8/simplebatchjob:1.0.1
       restartPolicy: Never
 
   
