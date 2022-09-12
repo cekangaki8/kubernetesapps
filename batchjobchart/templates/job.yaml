@@ -1,0 +1,19 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ .Values.applicationName }}"
+spec:
+  {{- if .Values.autoCleanupInSeconds }}
+  ttlSecondsAfterFinished: {{ .Values.autoCleanupInSeconds }}
+  {{- end }}
+  template:
+    metadata:
+      name: "{{ .Values.applicationName }}"
+    spec:
+      containers:
+        - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          name: {{ .Values.applicationName }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+      restartPolicy: {{ .Values.restartPolicy }}
+  backoffLimit: {{ .Values.backoffLimit }}
